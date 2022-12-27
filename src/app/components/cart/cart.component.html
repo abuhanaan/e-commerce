@@ -4,13 +4,16 @@
     <a routerLink="/shipping">Shipping Prices</a>
 </p>
 
+<h3 *ngIf="items.length == 0" [ngStyle]="{'color': 'red'}">
+    There is no item in your cart!. Please navigate to the store and buy
+</h3>
 <div class="cart-item" *ngFor="let item of items">
     <span>{{ item.name }}</span>
     <span>{{ item.price | currency }}</span>
 </div>
 
 <!-- ngSubmit listens to the form submission and calls the onSubmit() method with the checkoutForm value -->
-<form [formGroup]="checkOutForm" (ngSubmit)="onSubmit()">
+<form *ngIf="items.length > 0" [formGroup]="checkOutForm" (ngSubmit)="onSubmit()">
     <div>
         <label for="name">Name</label>
         <input type="text" id="name" formControlName="name" />
