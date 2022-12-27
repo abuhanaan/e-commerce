@@ -1,7 +1,28 @@
-<h2>Products</h2>
+<h1>Products</h1>
 
 <div *ngFor="let product of products">
-    <h3>
+
+    <mat-card class="product-card m-down">
+        <a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">
+            <mat-card-header>
+                <h3>
+            
+                        {{ product.name }}
+                    
+                </h3>
+            </mat-card-header>
+            <mat-card-content>
+                <p *ngIf="product.description">
+                    Description: {{ product.description }}
+                </p>
+            </mat-card-content>
+        </a>
+        <mat-card-actions>
+            <button class="bt" mat-button (click)="share()">Share</button>
+            <app-product-alerts [product]="product" (notify)="onNotify()"></app-product-alerts>
+        </mat-card-actions>
+    </mat-card>
+    <!-- <h3>
         <a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">
             {{ product.name }}
         </a>
@@ -10,7 +31,7 @@
         Description: {{ product.description }}
     </p>
     <button type="button" (click)="share()">Share</button>
-    <app-product-alerts [product]="product" (notify)="onNotify()"></app-product-alerts>
+    <app-product-alerts [product]="product" (notify)="onNotify()"></app-product-alerts> -->
 </div>
 
 
