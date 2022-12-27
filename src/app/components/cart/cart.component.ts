@@ -20,4 +20,10 @@ export class CartComponent {
     
   }
 
+  onSubmit(): void {
+    this.items = this.cartService.clearCart()
+    console.warn('Your order has been submitted', this.checkOutForm.value)
+    this.checkOutForm.reset()
+  }
+
 }
